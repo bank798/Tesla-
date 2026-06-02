@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Tesla Investment | Sign In</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --tesla-red: #E82127; --gold: #C8A96E; --gradient-red: linear-gradient(135deg, #E82127 0%, #B8151A 100%); --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; font-family: 'Inter', sans-serif; background: #0A0B0E; color: #FFFFFF; width: 100%; min-height: 100vh; -webkit-font-smoothing: antialiased; background: radial-gradient(circle at 20% 30%, rgba(232,33,39,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(200,169,110,0.05) 0%, transparent 50%), #0A0B0E; }
+    input { -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text; }
+    .login-screen { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 60px 20px 20px 20px; }
+    .login-content { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 20px; }
+    .logo-area { text-align: center; margin-bottom: 4px; }
+    .logo-svg { width: 44px; height: 44px; filter: drop-shadow(0 0 18px rgba(232,33,39,0.6)); margin-bottom: 10px; }
+    .logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.5px; }
+    .logo-text span { color: var(--tesla-red); }
+    .welcome-text { color: #8B8F96; font-size: 14px; margin-top: 4px; }
+    .form-group { position: relative; display: flex; flex-direction: column; }
+    .form-group label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #B0B3B8; margin-bottom: 6px; }
+    .input-wrapper { position: relative; display: flex; align-items: center; width: 100%; }
+    .input-wrapper i { position: absolute; left: 16px; color: #6B6F76; font-size: 16px; transition: var(--transition); pointer-events: none; z-index: 1; }
+    .form-control { width: 100%; padding: 15px 50px 15px 50px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; font-size: 15px; font-family: 'Inter', sans-serif; color: #FFFFFF; outline: none; transition: var(--transition); letter-spacing: 0.3px; }
+    .form-control::placeholder { color: #5A5E66; }
+    .form-control:focus { border-color: var(--tesla-red); background: rgba(232,33,39,0.05); box-shadow: 0 0 0 4px rgba(232,33,39,0.08); }
+    .input-wrapper:focus-within i { color: var(--tesla-red); }
+    .toggle-password { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #6B6F76; cursor: pointer; font-size: 16px; padding: 8px; transition: var(--transition); z-index: 2; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; }
+    .toggle-password:hover { color: #FFFFFF; background: rgba(255,255,255,0.06); }
+    .error-message { color: #FF6B70; font-size: 12px; margin-top: 6px; padding-left: 4px; display: flex; align-items: center; gap: 6px; min-height: 20px; }
+    .notification-toast { position: fixed; top: 24px; left: 50%; transform: translateX(-50%) translateY(-120px); padding: 14px 24px; border-radius: 16px; font-size: 14px; z-index: 9999; transition: transform 0.5s ease; font-weight: 500; display: flex; align-items: center; gap: 10px; backdrop-filter: blur(30px); }
+    .notification-toast.show { transform: translateX(-50%) translateY(0); }
+    .notification-toast.success { background: rgba(0,200,83,0.15); border: 1px solid rgba(0,200,83,0.35); color: #00E676; }
+    .notification-toast.error { background: rgba(232,33,39,0.15); border: 1px solid rgba(232,33,39,0.35); color: #FF6B70; }
+    .options-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+    .remember-me { display: flex; align-items: center; gap: 8px; color: #B0B3B8; cursor: pointer; font-size: 13px; }
+    .remember-me input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 5px; background: transparent; cursor: pointer; position: relative; transition: var(--transition); flex-shrink: 0; }
+    .remember-me input[type="checkbox"]:checked { background: var(--tesla-red); border-color: var(--tesla-red); }
+    .remember-me input[type="checkbox"]:checked::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 10px; }
+    .forgot-link { color: var(--tesla-red); text-decoration: none; font-weight: 500; font-size: 13px; }
+    .btn { width: 100%; padding: 16px; border-radius: 16px; font-weight: 600; font-size: 15px; cursor: pointer; transition: var(--transition); border: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; letter-spacing: 0.5px; text-transform: uppercase; font-family: 'Inter', sans-serif; }
+    .btn-primary { background: var(--gradient-red); color: #FFFFFF; box-shadow: 0 12px 30px rgba(232,33,39,0.4); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(232,33,39,0.55); }
+    .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; }
+    .signup-text { text-align: center; color: #8B8F96; font-size: 14px; }
+    .signup-text a { color: var(--tesla-red); text-decoration: none; font-weight: 600; }
+    .btn-spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #FFFFFF; border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 500px) { .login-screen { padding: 40px 16px; } .logo-text { font-size: 26px; } .form-control { padding: 14px 44px; font-size: 14px; } }
+    @media (max-width: 380px) { .login-screen { padding: 30px 12px; } .form-control { padding: 13px 40px; font-size: 13px; } .logo-text { font-size: 22px; } }
+  </style>
+</head>
+<body>
+  <div class="notification-toast" id="notificationToast"><i class="fas fa-check-circle"></i><span id="notificationMessage"></span></div>
+  <div class="login-screen">
+    <div class="login-content">
+      <div class="logo-area">
+        <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
+          <defs><linearGradient id="loginLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E82127"/><stop offset="100%" style="stop-color:#B8151A"/></linearGradient></defs>
+          <path d="M20 2L37 34H3L20 2Z" fill="url(#loginLogoGrad)"/><path d="M20 8L31 30H9L20 8Z" fill="#FFFFFF"/>
+        </svg>
+        <div class="logo-text">TESLA<span>.</span></div>
+        <p class="welcome-text">Welcome back, sign in to continue</p>
+      </div>
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <div class="input-wrapper">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" class="form-control" placeholder="example@gmail.com" required autocomplete="email" spellcheck="false">
+          </div>
+          <div class="error-message" id="emailError"></div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" class="form-control" placeholder="" required autocomplete="current-password" minlength="6">
+            <button type="button" class="toggle-password" id="togglePassword" tabindex="-1"><i class="fas fa-eye"></i></button>
+          </div>
+          <div class="error-message" id="passwordError"></div>
+        </div>
+        <div class="options-row">
+          <label class="remember-me"><input type="checkbox" id="rememberMe"><span>Remember me</span></label>
+          <a href="forget.html" class="forgot-link">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+      </form>
+      <p class="signup-text">Don't have an account? <a href="create.html">Create one</a></p>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const API = 'https://samei.up.railway.app'; // Same server, leave empty for same origin
+      const togglePasswordBtn = document.getElementById('togglePassword');
+      const passwordInput = document.getElementById('password');
+      togglePasswordBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const icon = this.querySelector('i');
+        if (passwordInput.type === 'password') { passwordInput.type = 'text'; icon.classList.replace('fa-eye','fa-eye-slash'); }
+        else { passwordInput.type = 'password'; icon.classList.replace('fa-eye-slash','fa-eye'); }
+      });
+
+      const loginForm = document.getElementById('loginForm');
+      const emailInput = document.getElementById('email');
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+      const loginBtn = document.getElementById('loginBtn');
+      const notificationToast = document.getElementById('notificationToast');
+      const notificationMessage = document.getElementById('notificationMessage');
+
+      emailInput.addEventListener('input', () => emailError.innerHTML = '');
+      passwordInput.addEventListener('input', () => passwordError.innerHTML = '');
+
+      function showNotification(message, type = 'success') {
+        notificationMessage.textContent = message;
+        notificationToast.className = 'notification-toast ' + type + ' show';
+        notificationToast.querySelector('i').className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+        clearTimeout(notificationToast._t);
+        notificationToast._t = setTimeout(() => notificationToast.classList.remove('show'), 4000);
+      }
+
+      loginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        emailError.innerHTML = ''; passwordError.innerHTML = '';
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        let hasError = false;
+        if (!email) { emailError.innerHTML = '<i class="fas fa-exclamation-circle"></i> Email is required'; hasError = true; }
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { emailError.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please enter a valid email'; hasError = true; }
+        if (!password) { passwordError.innerHTML = '<i class="fas fa-exclamation-circle"></i> Password is required'; hasError = true; }
+        else if (password.length < 6) { passwordError.innerHTML = '<i class="fas fa-exclamation-circle"></i> Password must be at least 6 characters'; hasError = true; }
+        if (hasError) return;
+
+        loginBtn.disabled = true;
+        loginBtn.innerHTML = '<span class="btn-spinner"></span> Signing in...';
+
+        try {
+          const res = await fetch(`${API}/api/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+          });
+          const json = await res.json();
+          
+          setTimeout(() => {
+            if (json.success) {
+              localStorage.setItem('tesla_user', JSON.stringify(json.user));
+              showNotification('Login successful! Redirecting...', 'success');
+              setTimeout(() => { window.location.href = 'dashboard.html'; }, 1000);
+            } else {
+              loginBtn.disabled = false;
+              loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+              showNotification(json.message || 'Invalid credentials', 'error');
+            }
+          }, 2000);
+        } catch (e) {
+          loginBtn.disabled = false;
+          loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+          showNotification('Server connection failed', 'error');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
