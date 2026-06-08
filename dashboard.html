@@ -358,11 +358,11 @@
       });
 
       document.getElementById('giftCode').addEventListener('input', function() {
-        let v = this.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
-        if (v.length >= 4) { const p = []; for (let i = 0; i < v.length; i += 4) p.push(v.slice(i, i + 4)); v = p.join('-'); }
-        if (v.length > 24) v = v.slice(0, 24);
-        this.value = v;
-      });
+  // Only uppercase and remove invalid characters, don't add dashes
+  let v = this.value.replace(/[^a-zA-Z0-9-]/g, '').toUpperCase();
+  if (v.length > 30) v = v.slice(0, 30);
+  this.value = v;
+});
 
       document.getElementById('redeemBtn').addEventListener('click', async function() {
         const giftMsg = document.getElementById('giftMsg');
